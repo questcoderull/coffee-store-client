@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import CoffeCard from "./CoffeCard";
 
 const Home = () => {
-  const coffes = useLoaderData();
-  console.log(coffes);
+  const initialCoffes = useLoaderData();
+  // console.log(coffes);
+
+  const [coffees, setCoffees] = useState(initialCoffes);
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {coffes.map((coffee) => (
-          <CoffeCard key={coffee._id} coffee={coffee}></CoffeCard>
+        {coffees.map((coffee) => (
+          <CoffeCard
+            key={coffee._id}
+            coffees={coffees}
+            setCoffees={setCoffees}
+            coffee={coffee}
+          ></CoffeCard>
         ))}
       </div>
     </div>
